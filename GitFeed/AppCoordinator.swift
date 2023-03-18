@@ -15,7 +15,6 @@ class AppCoordinator: BaseCoordinator {
     
     private let navigationController: UINavigationController = {
         let nav = UINavigationController()
-        nav.navigationBar.prefersLargeTitles = true
         return nav
     }()
     

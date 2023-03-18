@@ -18,6 +18,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDg-UY-2FO">
+                        <rect key="frame" x="4" y="4" width="312" height="92"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GhH-6g-fLT">
                         <rect key="frame" x="16" y="15" width="70" height="70"/>
                         <constraints>
@@ -25,16 +29,16 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QRs-Fb-bhb">
-                        <rect key="frame" x="102" y="21" width="80" height="58"/>
+                        <rect key="frame" x="102" y="4.6666666666666643" width="80" height="90.666666666666686"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azv-fI-P43">
-                                <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azv-fI-P43">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="62.666666666666664"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Site Admin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwQ-35-gZr">
-                                <rect key="frame" x="0.0" y="38" width="80" height="20"/>
+                                <rect key="frame" x="0.0" y="70.666666666666657" width="80" height="20"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Kcm-5b-cYg"/>
@@ -52,15 +56,21 @@
                         </subviews>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="UDg-UY-2FO" secondAttribute="bottom" constant="4" id="3PI-eN-mky"/>
+                    <constraint firstItem="UDg-UY-2FO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="4bH-d0-9s9"/>
                     <constraint firstItem="QRs-Fb-bhb" firstAttribute="leading" secondItem="GhH-6g-fLT" secondAttribute="trailing" constant="16" id="8vD-s0-bAM"/>
                     <constraint firstItem="GhH-6g-fLT" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.7" id="Ba1-UH-nks"/>
                     <constraint firstItem="QRs-Fb-bhb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Neh-ZM-Jcy"/>
+                    <constraint firstAttribute="trailing" secondItem="UDg-UY-2FO" secondAttribute="trailing" constant="4" id="OCL-O1-i8Z"/>
                     <constraint firstItem="GhH-6g-fLT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YqE-nE-btR"/>
+                    <constraint firstItem="UDg-UY-2FO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="ZgO-Ks-d5H"/>
                     <constraint firstItem="GhH-6g-fLT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="so1-He-SNM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="avatarImageView" destination="GhH-6g-fLT" id="ymI-Uc-uF0"/>
                 <outlet property="nameLabel" destination="azv-fI-P43" id="6J1-Wt-fJu"/>
@@ -72,6 +82,9 @@
     <resources>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

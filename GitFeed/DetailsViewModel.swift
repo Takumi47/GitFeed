@@ -1,23 +1,23 @@
 //
-//  UserViewModel.swift
+//  DetailsViewModel.swift
 //  GitFeed
 //
-//  Created by xander on 2023/3/17.
+//  Created by xander on 2023/3/18.
 //
 
 import Foundation
 import RxDataSources
 
-typealias UserItemsSection = SectionModel<Int, UserViewPresentable>
+typealias DetailsItemsSection = SectionModel<Int, DetailsViewPresentable>
 
-protocol UserViewPresentable {
+protocol DetailsViewPresentable {
     var id: Int { get }
     var login: String { get }
     var avatarUrl: String { get }
     var siteAdmin: Bool { get }
 }
 
-struct UserViewModel: UserViewPresentable {
+struct DetailsViewModel: DetailsViewPresentable {
     let model: GitHubUser
     
     var id: Int { model.id }

@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 import RxDataSources
 
 class UserListViewController: UIViewController, Storyboardable {
@@ -31,10 +30,17 @@ class UserListViewController: UIViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = viewModelBuilder(())
+        self.viewModel = viewModelBuilder((
+            userSelect: tableView.rx.modelSelected(UserViewModel.self).asDriver(), ()
+        ))
         
         setUI()
         setBinding()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - Private Implementation
