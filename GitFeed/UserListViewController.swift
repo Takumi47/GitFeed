@@ -15,6 +15,8 @@ class UserListViewController: UIViewController, Storyboardable {
     // MARK: - Properties
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var leftBarButton: UIBarButtonItem!
+    @IBOutlet weak var rightBarButton: UIBarButtonItem!
     private lazy var refresher = UIRefreshControl()
     
     private var viewModel: UserListViewPresentable!
@@ -59,6 +61,12 @@ class UserListViewController: UIViewController, Storyboardable {
         viewModel.output.userList
             .do { [weak self] _ in self?.refresher.endRefreshing() }
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: bag)
+        
+        viewModel.output.numberOfItems
+            .filter { $0 > 0 }
+            .map { "\($0) user\($0 == 1 ? "" : "s")" }
+            .drive(leftBarButton.rx.title)
             .disposed(by: bag)
     }
 }

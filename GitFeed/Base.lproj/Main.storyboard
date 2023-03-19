@@ -33,9 +33,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="7wg-h6-4v0">
                         <barButtonItem key="leftBarButtonItem" id="W9Z-6Q-4aN"/>
-                        <barButtonItem key="rightBarButtonItem" id="uft-sF-bPe"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="uft-sF-bPe"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="leftBarButton" destination="W9Z-6Q-4aN" id="uaA-nL-Usg"/>
+                        <outlet property="rightBarButton" destination="uft-sF-bPe" id="nT0-qe-v1m"/>
                         <outlet property="tableView" destination="75w-80-4Js" id="cKf-ZR-BRk"/>
                     </connections>
                 </viewController>

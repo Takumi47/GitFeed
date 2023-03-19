@@ -16,7 +16,8 @@ protocol UserListViewPresentable {
         userSelect: Driver<UserViewPresentable>
     )
     typealias Output = (
-        userList: Driver<[UserItemsSection]>, ()
+        userList: Driver<[UserItemsSection]>,
+        numberOfItems: Driver<Int>
     )
     typealias ViewModelBuilder = (UserListViewPresentable.Input) -> UserListViewPresentable
     
@@ -31,8 +32,8 @@ class UserListViewModel: UserListViewPresentable {
     private let gitHubService: GitHubAPI
     private let bag = DisposeBag()
     
-    typealias State = (userList: BehaviorRelay<Set<GitHubUser>>, ())
-    private let state: State = (userList: .init(value: []), ())
+    typealias State = (userList: BehaviorRelay<Set<GitHubUser>>, numberOfItems: BehaviorRelay<Int>)
+    private let state: State = (userList: .init(value: []), numberOfItems: .init(value: 0))
     
     private typealias RoutingAction = (userSelectedRelay: PublishRelay<[GitHubUserDetails]>, ())
     private let routingAction: RoutingAction = (userSelectedRelay: .init(), ())
@@ -57,7 +58,7 @@ extension UserListViewModel {
             .map { $0.sorted { $0.id < $1.id} }
             .map { [UserItemsSection(model: 0, items: $0)] }
             .asDriver(onErrorJustReturn: [])
-        return (sections, ())
+        return (sections, state.numberOfItems.asDriver())
     }
     
     func process() {
@@ -66,7 +67,10 @@ extension UserListViewModel {
                 gitHubService.fetchUserList()
             }
             .map(Set.init)
-            .map { [state] in state.userList.accept($0) }
+            .map { [state] in
+                state.userList.accept($0)
+                state.numberOfItems.accept($0.count)
+            }
             .subscribe()
             .disposed(by: bag)
         
