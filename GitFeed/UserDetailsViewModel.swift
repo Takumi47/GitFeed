@@ -15,7 +15,7 @@ protocol UserDetailsViewPresentable {
         userDetails: Driver<[DetailsItemsSection]>, ()
     )
     typealias Dependencies = (
-        models: [GitHubUser], ()
+        models: [GitHubUserDetails], ()
     )
     typealias ViewModelBuilder = (UserDetailsViewPresentable.Input) -> UserDetailsViewPresentable
     

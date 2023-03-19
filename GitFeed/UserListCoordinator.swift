@@ -37,7 +37,7 @@ class UserListCoordinator: BaseCoordinator {
 }
 
 extension UserListCoordinator {
-    func showUserDetails(usingModels models: [GitHubUser]) {
+    func showUserDetails(usingModels models: [GitHubUserDetails]) {
         let userDetailsCoordinator = UserDetailsCoordinator(router: router, models: models)
         add(coordinator: userDetailsCoordinator)
         userDetailsCoordinator.completionHandler = { [weak self, weak userDetailsCoordinator] in

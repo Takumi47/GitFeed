@@ -10,9 +10,9 @@ import UIKit
 class UserDetailsCoordinator: BaseCoordinator {
     
     private let router: Routing
-    private let models: [GitHubUser]
+    private let models: [GitHubUserDetails]
     
-    init(router: Routing, models: [GitHubUser]) {
+    init(router: Routing, models: [GitHubUserDetails]) {
         self.router = router
         self.models = models
     }

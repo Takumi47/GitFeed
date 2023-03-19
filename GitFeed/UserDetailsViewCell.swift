@@ -42,9 +42,12 @@ class UserDetailsViewCell: UITableViewCell {
 
 extension UserDetailsViewCell {
     func configure(viewModel: DetailsViewPresentable) {
-        nameLabel.text = viewModel.login
+        nameLabel.text = viewModel.name
+        bioLabel.text = viewModel.bio
         loginLabel.text = viewModel.login
         siteAdminLabel.isHidden = !viewModel.siteAdmin
+        locationLabel.text = viewModel.location
+        blogLabel.text = viewModel.blog
         
         if let url = URL(string: viewModel.avatarUrl) {
             avatarImageView.kf.setImage(with: url, placeholder: UIImage(named: "blank-avatar"))

@@ -29,7 +29,27 @@ extension GitHubService: GitHubAPI {
                         single(.success(userList))
                     }
             } catch {
-                single(.failure(GHError.error(message: "UserList fetch failed")))
+                single(.failure(GHError.error(message: "UserList fetch failed: \(error.localizedDescription)")))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchUserDetails(username: String) -> Single<GitHubUserDetails> {
+        return Single.create { [httpService] single -> Disposable in
+            do {
+                try GitHubHttpRouter.getAUser(username: username)
+                    .request(usingHttpService: httpService)
+                    .responseDecodable(of: GitHubUserDetails.self) { response in
+                        if let error = response.error {
+                            single(.failure(error))
+                        }
+                        
+                        guard let userDetails = response.value else { return }
+                        single(.success(userDetails))
+                    }
+            } catch {
+                single(.failure(GHError.error(message: "UserDetails fetch failed: \(error.localizedDescription)")))
             }
             return Disposables.create()
         }

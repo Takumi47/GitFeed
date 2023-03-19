@@ -32,8 +32,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7wg-h6-4v0">
-                        <barButtonItem key="leftBarButtonItem" title="Prev" id="W9Z-6Q-4aN"/>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="uft-sF-bPe"/>
+                        <barButtonItem key="leftBarButtonItem" id="W9Z-6Q-4aN"/>
+                        <barButtonItem key="rightBarButtonItem" id="uft-sF-bPe"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="75w-80-4Js" id="cKf-ZR-BRk"/>

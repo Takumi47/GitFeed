@@ -12,7 +12,8 @@ import RxRelay
 
 protocol UserListViewPresentable {
     typealias Input = (
-        userSelect: Driver<UserViewPresentable>, ()
+        refreshAction: Driver<()>,
+        userSelect: Driver<UserViewPresentable>
     )
     typealias Output = (
         userList: Driver<[UserItemsSection]>, ()
@@ -33,10 +34,10 @@ class UserListViewModel: UserListViewPresentable {
     typealias State = (userList: BehaviorRelay<Set<GitHubUser>>, ())
     private let state: State = (userList: .init(value: []), ())
     
-    private typealias RoutingAction = (userSelectedRelay: PublishRelay<[GitHubUser]>, ())
+    private typealias RoutingAction = (userSelectedRelay: PublishRelay<[GitHubUserDetails]>, ())
     private let routingAction: RoutingAction = (userSelectedRelay: .init(), ())
     
-    typealias Routing = (userSelected: Driver<[GitHubUser]>, ())
+    typealias Routing = (userSelected: Driver<[GitHubUserDetails]>, ())
     lazy var router: Routing = (userSelected: routingAction.userSelectedRelay.asDriver(onErrorDriveWith: .empty()), ())
     
     init(input: UserListViewPresentable.Input, gitHubService: GitHubAPI) {
@@ -60,23 +61,28 @@ extension UserListViewModel {
     }
     
     func process() {
-        gitHubService
-            .fetchUserList()
+        input.refreshAction.asObservable()
+            .flatMapLatest { [gitHubService] _ in
+                gitHubService.fetchUserList()
+            }
             .map(Set.init)
             .map { [state] in state.userList.accept($0) }
             .subscribe()
             .disposed(by: bag)
         
-        input.userSelect
+        input.userSelect.asObservable()
             .map { $0.id }
             .withLatestFrom(state.userList.asDriver()) { ($0, $1) }
             .compactMap { (id, userList) in
-                userList.filter { $0.id == id }
+                userList.filter { $0.id == id }.first
+            }
+            .flatMapLatest { [gitHubService] user -> Single<GitHubUserDetails> in
+                gitHubService.fetchUserDetails(username: user.login)
             }
             .map { [routingAction] in
-                routingAction.userSelectedRelay.accept($0)
+                routingAction.userSelectedRelay.accept([$0])
             }
-            .drive()
+            .subscribe()
             .disposed(by: bag)
     }
 }

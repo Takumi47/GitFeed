@@ -10,4 +10,5 @@ import RxSwift
 
 protocol GitHubAPI {
     func fetchUserList() -> Single<GitHubUserList>
+    func fetchUserDetails(username: String) -> Single<GitHubUserDetails>
 }

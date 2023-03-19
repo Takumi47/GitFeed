@@ -24,12 +24,29 @@ extension GitHubHttpRouter: HttpRouter {
         }
     }
     
-    var method: Alamofire.HTTPMethod {
+    var method: HTTPMethod {
         switch self {
         case .listUsers:
             return .get
         case .getAUser:
             return .get
         }
+    }
+    
+    var parameters: Parameters? {
+        [Parameters.Keys.since.rawValue: Parameters.Values.since.rawValue,
+         Parameters.Keys.perPage.rawValue: Parameters.Values.perPage.rawValue]
+    }
+}
+
+extension Parameters {
+    enum Keys: String {
+        case since
+        case perPage = "per_page"
+    }
+    
+    enum Values: String {
+        case since = "0"
+        case perPage = "20"
     }
 }

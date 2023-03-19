@@ -15,7 +15,7 @@ class UserListViewController: UIViewController, Storyboardable {
     // MARK: - Properties
     
     @IBOutlet weak var tableView: UITableView!
-    private var refreshControl: UIRefreshControl!
+    private lazy var refresher = UIRefreshControl()
     
     private var viewModel: UserListViewPresentable!
     var viewModelBuilder: UserListViewPresentable.ViewModelBuilder!
@@ -33,11 +33,13 @@ class UserListViewController: UIViewController, Storyboardable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = viewModelBuilder((
-            userSelect: tableView.rx.modelSelected(UserViewPresentable.self).asDriver(onErrorDriveWith: .empty()), ()
+            refreshAction: refresher.rx.controlEvent(.valueChanged).asDriver(),
+            userSelect: tableView.rx.modelSelected(UserViewPresentable.self).asDriver(onErrorDriveWith: .empty())
         ))
         
         setUI()
         setBinding()
+        refresher.sendActions(for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,13 +51,13 @@ class UserListViewController: UIViewController, Storyboardable {
     
     private func setUI() {
         title = "Users"
-        refreshControl = .init()
-        tableView.addSubview(refreshControl)
+        tableView.addSubview(refresher)
         tableView.register(UINib(nibName: "\(UserViewCell.self)", bundle: nil), forCellReuseIdentifier: UserViewCell.reuseId)
     }
     
     private func setBinding() {
         viewModel.output.userList
+            .do { [weak self] _ in self?.refresher.endRefreshing() }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
     }

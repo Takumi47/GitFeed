@@ -24,9 +24,17 @@ extension HttpRouter {
     func body() throws -> Data? { nil }
     
     func asUrlRequest() throws -> URLRequest {
-        var url = try baseUrlString.asURL()
-        url.appendPathComponent(path)
+        var comp = URLComponents(string: baseUrlString + path)!
+        if let parameters = parameters, !parameters.isEmpty {
+            var queryItems: [URLQueryItem] = []
+            for (key, value) in parameters {
+                guard let val = value as? String else { continue }
+                queryItems.append(URLQueryItem(name: key, value: val))
+            }
+            comp.queryItems = queryItems
+        }
         
+        let url = try comp.asURL()
         var request = try URLRequest(url: url, method: method, headers: headers)
         request.httpBody = try body()
         
