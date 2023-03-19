@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import RxDataSources
 
 class UserListViewController: UIViewController, Storyboardable {
@@ -14,6 +15,7 @@ class UserListViewController: UIViewController, Storyboardable {
     // MARK: - Properties
     
     @IBOutlet weak var tableView: UITableView!
+    private var refreshControl: UIRefreshControl!
     
     private var viewModel: UserListViewPresentable!
     var viewModelBuilder: UserListViewPresentable.ViewModelBuilder!
@@ -47,6 +49,8 @@ class UserListViewController: UIViewController, Storyboardable {
     
     private func setUI() {
         title = "Users"
+        refreshControl = .init()
+        tableView.addSubview(refreshControl)
         tableView.register(UINib(nibName: "\(UserViewCell.self)", bundle: nil), forCellReuseIdentifier: UserViewCell.reuseId)
     }
     

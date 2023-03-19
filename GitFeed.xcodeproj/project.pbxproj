@@ -39,8 +39,6 @@
 		C0F5315A29C5E83100853B8C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5315929C5E83100853B8C /* DetailsViewModel.swift */; };
 		C0F5315F29C6457E00853B8C /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5315E29C6457E00853B8C /* Drawable.swift */; };
 		C0F5316329C6475B00853B8C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5316229C6475B00853B8C /* Router.swift */; };
-		C0F5316529C6AA8500853B8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5316429C6AA8500853B8C /* ViewController.swift */; };
-		C0F5316729C6E76600853B8C /* ViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5316629C6E76600853B8C /* ViewCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,8 +78,6 @@
 		C0F5315929C5E83100853B8C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		C0F5315E29C6457E00853B8C /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
 		C0F5316229C6475B00853B8C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		C0F5316429C6AA8500853B8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C0F5316629C6E76600853B8C /* ViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +152,6 @@
 				C0F5314229C4CDE400853B8C /* Cell */,
 				C0F5311729C383D800853B8C /* UserListViewController.swift */,
 				C0F5314329C4D14200853B8C /* UserDetailsViewController.swift */,
-				C0F5316429C6AA8500853B8C /* ViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -180,7 +175,6 @@
 				C0F5312129C39AA700853B8C /* AppCoordinator.swift */,
 				C0F5311E29C3967800853B8C /* UserListCoordinator.swift */,
 				C0F5314929C4EC7700853B8C /* UserDetailsCoordinator.swift */,
-				C0F5316629C6E76600853B8C /* ViewCoordinator.swift */,
 			);
 			name = Coordinator;
 			sourceTree = "<group>";
@@ -390,13 +384,11 @@
 				C0F5314D29C4F2E700853B8C /* UserDetailsViewCell.swift in Sources */,
 				C0F5312629C3A0A900853B8C /* HttpRouter.swift in Sources */,
 				C0F5315F29C6457E00853B8C /* Drawable.swift in Sources */,
-				C0F5316529C6AA8500853B8C /* ViewController.swift in Sources */,
 				C0F5313729C4278400853B8C /* UserViewModel.swift in Sources */,
 				C0F5313C29C4387900853B8C /* UserViewCell.swift in Sources */,
 				C0F5312A29C3A20700853B8C /* GitHubHttpService.swift in Sources */,
 				C0F5314829C4E03C00853B8C /* GitHubUserDetails.swift in Sources */,
 				C0F5312829C3A15200853B8C /* HttpService.swift in Sources */,
-				C0F5316729C6E76600853B8C /* ViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

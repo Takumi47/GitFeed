@@ -30,9 +30,7 @@ class UserDetailsViewController: UIViewController, Storyboardable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel = viewModelBuilder((
-            detailsSelect: tableView.rx.modelSelected(DetailsViewPresentable.self).asDriver(onErrorDriveWith: .empty()), ()
-        ))
+        self.viewModel = viewModelBuilder(())
         
         setUI()
         setBinding()
