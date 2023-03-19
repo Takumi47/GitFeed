@@ -25,19 +25,19 @@ class UserListCoordinator: BaseCoordinator {
             viewModel.router.userSelected
                 .map { [weak self] in
                     guard let self = self else { return }
-                    self.showUserDetails(usingModel: $0)
+                    self.showUserDetails(usingModels: $0)
                 }
                 .drive()
                 .disposed(by: bag)
             return viewModel
         }
         
-        router.push(view, animated: true, onNavigationBack: completionHandler)
+        router.push(view, isAnimated: true, onNavigationBack: completionHandler)
     }
 }
 
 extension UserListCoordinator {
-    func showUserDetails(usingModel models: [GitHubUser]) {
+    func showUserDetails(usingModels models: [GitHubUser]) {
         let userDetailsCoordinator = UserDetailsCoordinator(router: router, models: models)
         add(coordinator: userDetailsCoordinator)
         userDetailsCoordinator.completionHandler = { [weak self, weak userDetailsCoordinator] in

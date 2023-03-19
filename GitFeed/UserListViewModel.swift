@@ -12,7 +12,7 @@ import RxRelay
 
 protocol UserListViewPresentable {
     typealias Input = (
-        userSelect: Driver<UserViewModel>, ()
+        userSelect: Driver<UserViewPresentable>, ()
     )
     typealias Output = (
         userList: Driver<[UserItemsSection]>, ()
@@ -70,7 +70,7 @@ extension UserListViewModel {
         input.userSelect
             .map { $0.id }
             .withLatestFrom(state.userList.asDriver()) { ($0, $1) }
-            .map { (id, userList) in
+            .compactMap { (id, userList) in
                 userList.filter { $0.id == id }
             }
             .map { [routingAction] in

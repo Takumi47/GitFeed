@@ -31,7 +31,7 @@ class UserListViewController: UIViewController, Storyboardable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = viewModelBuilder((
-            userSelect: tableView.rx.modelSelected(UserViewModel.self).asDriver(), ()
+            userSelect: tableView.rx.modelSelected(UserViewPresentable.self).asDriver(onErrorDriveWith: .empty()), ()
         ))
         
         setUI()
