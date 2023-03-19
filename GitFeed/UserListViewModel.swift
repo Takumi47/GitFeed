@@ -13,11 +13,13 @@ import RxRelay
 protocol UserListViewPresentable {
     typealias Input = (
         refreshAction: Driver<()>,
+        nextPageAction: Driver<()>,
         userSelect: Driver<UserViewPresentable>
     )
     typealias Output = (
         userList: Driver<[UserItemsSection]>,
-        numberOfItems: Driver<Int>
+        numberOfUsers: Driver<Int>,
+        nextPageStatus: Driver<Bool>
     )
     typealias ViewModelBuilder = (UserListViewPresentable.Input) -> UserListViewPresentable
     
@@ -32,8 +34,16 @@ class UserListViewModel: UserListViewPresentable {
     private let gitHubService: GitHubAPI
     private let bag = DisposeBag()
     
-    typealias State = (userList: BehaviorRelay<Set<GitHubUser>>, numberOfItems: BehaviorRelay<Int>)
-    private let state: State = (userList: .init(value: []), numberOfItems: .init(value: 0))
+    typealias State = (
+        userList: BehaviorRelay<Set<GitHubUser>>,
+        numberOfUsers: BehaviorRelay<Int>,
+        nextPageURL: BehaviorRelay<String>
+    )
+    private let state: State = (
+        userList: .init(value: []),
+        numberOfUsers: .init(value: 0),
+        nextPageURL: .init(value: "")
+    )
     
     private typealias RoutingAction = (userSelectedRelay: PublishRelay<[GitHubUserDetails]>, ())
     private let routingAction: RoutingAction = (userSelectedRelay: .init(), ())
@@ -58,7 +68,14 @@ extension UserListViewModel {
             .map { $0.sorted { $0.id < $1.id} }
             .map { [UserItemsSection(model: 0, items: $0)] }
             .asDriver(onErrorJustReturn: [])
-        return (sections, state.numberOfItems.asDriver())
+        
+        let numberOfUsers = state.numberOfUsers.asDriver()
+        
+        let nextPageStatus = state.nextPageURL.asObservable()
+            .map { !$0.isEmpty }
+            .asDriver(onErrorJustReturn: false)
+        
+        return (sections, numberOfUsers, nextPageStatus)
     }
     
     func process() {
@@ -69,7 +86,7 @@ extension UserListViewModel {
             .map(Set.init)
             .map { [state] in
                 state.userList.accept($0)
-                state.numberOfItems.accept($0.count)
+                state.numberOfUsers.accept($0.count)
             }
             .subscribe()
             .disposed(by: bag)
@@ -85,6 +102,25 @@ extension UserListViewModel {
             }
             .map { [routingAction] in
                 routingAction.userSelectedRelay.accept([$0])
+            }
+            .subscribe()
+            .disposed(by: bag)
+        
+        UserDefaults.standard.rx
+            .observe(String.self, "nextPageURL")
+            .debounce(.milliseconds(100), scheduler: MainScheduler.instance)
+            .compactMap { $0 }
+            .bind(to: state.nextPageURL)
+            .disposed(by: bag)
+        
+        input.nextPageAction.asObservable()
+            .flatMapLatest { [gitHubService] _ in
+                gitHubService.fetchUserListNextPage()
+            }
+            .map(Set.init)
+            .map { [state] in
+                state.userList.accept($0)
+                state.numberOfUsers.accept($0.count)
             }
             .subscribe()
             .disposed(by: bag)

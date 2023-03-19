@@ -36,6 +36,7 @@ class UserListViewController: UIViewController, Storyboardable {
         super.viewDidLoad()
         self.viewModel = viewModelBuilder((
             refreshAction: refresher.rx.controlEvent(.valueChanged).asDriver(),
+            nextPageAction: rightBarButton.rx.asSafeDriver(),
             userSelect: tableView.rx.modelSelected(UserViewPresentable.self).asDriver(onErrorDriveWith: .empty())
         ))
         
@@ -59,14 +60,20 @@ class UserListViewController: UIViewController, Storyboardable {
     
     private func setBinding() {
         viewModel.output.userList
-            .do { [weak self] _ in self?.refresher.endRefreshing() }
+            .do { [weak self] _ in
+                self?.refresher.endRefreshing()
+            }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
         
-        viewModel.output.numberOfItems
+        viewModel.output.numberOfUsers
             .filter { $0 > 0 }
             .map { "\($0) user\($0 == 1 ? "" : "s")" }
             .drive(leftBarButton.rx.title)
+            .disposed(by: bag)
+        
+        viewModel.output.nextPageStatus
+            .drive(rightBarButton.rx.isEnabled)
             .disposed(by: bag)
     }
 }

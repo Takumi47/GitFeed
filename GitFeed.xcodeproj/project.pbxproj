@@ -39,6 +39,7 @@
 		C0F5315A29C5E83100853B8C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5315929C5E83100853B8C /* DetailsViewModel.swift */; };
 		C0F5315F29C6457E00853B8C /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5315E29C6457E00853B8C /* Drawable.swift */; };
 		C0F5316329C6475B00853B8C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5316229C6475B00853B8C /* Router.swift */; };
+		C0F5316E29C7850900853B8C /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5316D29C7850900853B8C /* UIBarButtonItem+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		C0F5315929C5E83100853B8C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		C0F5315E29C6457E00853B8C /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
 		C0F5316229C6475B00853B8C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		C0F5316D29C7850900853B8C /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				C0F5311929C38CB700853B8C /* View */,
 				C0F5312329C39FE400853B8C /* Service */,
 				C0F5312029C3977E00853B8C /* Utils */,
+				C0F5316A29C784C200853B8C /* Extensions */,
 				C0F5311229C3829F00853B8C /* Assets */,
 			);
 			path = GitFeed;
@@ -236,6 +239,14 @@
 				C0F5316229C6475B00853B8C /* Router.swift */,
 			);
 			name = Router;
+			sourceTree = "<group>";
+		};
+		C0F5316A29C784C200853B8C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C0F5316D29C7850900853B8C /* UIBarButtonItem+Extensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		CE316B17E74103CCEC0A1BCB /* Frameworks */ = {
@@ -376,6 +387,7 @@
 				C0F530FF29C3826E00853B8C /* AppDelegate.swift in Sources */,
 				C0F5312229C39AA700853B8C /* AppCoordinator.swift in Sources */,
 				C0F5315A29C5E83100853B8C /* DetailsViewModel.swift in Sources */,
+				C0F5316E29C7850900853B8C /* UIBarButtonItem+Extensions.swift in Sources */,
 				C0F5310129C3826E00853B8C /* SceneDelegate.swift in Sources */,
 				C0F5313329C3FA7400853B8C /* GitHubUserList.swift in Sources */,
 				C0F5311F29C3967800853B8C /* UserListCoordinator.swift in Sources */,
