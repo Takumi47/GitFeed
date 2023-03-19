@@ -37,6 +37,8 @@
 		C0F5314D29C4F2E700853B8C /* UserDetailsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5314B29C4F2E700853B8C /* UserDetailsViewCell.swift */; };
 		C0F5314E29C4F2E700853B8C /* UserDetailsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F5314C29C4F2E700853B8C /* UserDetailsViewCell.xib */; };
 		C0F5315A29C5E83100853B8C /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5315929C5E83100853B8C /* DetailsViewModel.swift */; };
+		C0F5315F29C6457E00853B8C /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5315E29C6457E00853B8C /* Drawable.swift */; };
+		C0F5316329C6475B00853B8C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5316229C6475B00853B8C /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		C0F5314B29C4F2E700853B8C /* UserDetailsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewCell.swift; sourceTree = "<group>"; };
 		C0F5314C29C4F2E700853B8C /* UserDetailsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsViewCell.xib; sourceTree = "<group>"; };
 		C0F5315929C5E83100853B8C /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		C0F5315E29C6457E00853B8C /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
+		C0F5316229C6475B00853B8C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			children = (
 				C0F530FE29C3826E00853B8C /* AppDelegate.swift */,
 				C0F5310029C3826E00853B8C /* SceneDelegate.swift */,
+				C0F5315D29C6455500853B8C /* Router */,
 				C0F5311D29C3962C00853B8C /* Coordinator */,
 				C0F5312D29C3B10000853B8C /* Model */,
 				C0F5311A29C38CCF00853B8C /* ViewModel */,
@@ -222,6 +227,15 @@
 				C0F5314C29C4F2E700853B8C /* UserDetailsViewCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		C0F5315D29C6455500853B8C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C0F5315E29C6457E00853B8C /* Drawable.swift */,
+				C0F5316229C6475B00853B8C /* Router.swift */,
+			);
+			name = Router;
 			sourceTree = "<group>";
 		};
 		CE316B17E74103CCEC0A1BCB /* Frameworks */ = {
@@ -353,6 +367,7 @@
 				C0F5313529C405E300853B8C /* GHError.swift in Sources */,
 				C0F5312F29C3F69700853B8C /* GitHubService.swift in Sources */,
 				C0F5312C29C3A2AE00853B8C /* GitHubHttpRouter.swift in Sources */,
+				C0F5316329C6475B00853B8C /* Router.swift in Sources */,
 				C0F5314A29C4EC7700853B8C /* UserDetailsCoordinator.swift in Sources */,
 				C0F5311C29C38D0C00853B8C /* UserListViewModel.swift in Sources */,
 				C0F5311429C3838000853B8C /* Storyboardable.swift in Sources */,
@@ -368,6 +383,7 @@
 				C0F5314429C4D14200853B8C /* UserDetailsViewController.swift in Sources */,
 				C0F5314D29C4F2E700853B8C /* UserDetailsViewCell.swift in Sources */,
 				C0F5312629C3A0A900853B8C /* HttpRouter.swift in Sources */,
+				C0F5315F29C6457E00853B8C /* Drawable.swift in Sources */,
 				C0F5313729C4278400853B8C /* UserViewModel.swift in Sources */,
 				C0F5313C29C4387900853B8C /* UserViewCell.swift in Sources */,
 				C0F5312A29C3A20700853B8C /* GitHubHttpService.swift in Sources */,

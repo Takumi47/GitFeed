@@ -10,11 +10,11 @@ import RxSwift
 
 class UserListCoordinator: BaseCoordinator {
     
-    private let navigationController: UINavigationController
+    private let router: Routing
     private let bag = DisposeBag()
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(router: Routing) {
+        self.router = router
     }
     
     override func start() {
@@ -32,14 +32,18 @@ class UserListCoordinator: BaseCoordinator {
             return viewModel
         }
         
-        navigationController.pushViewController(view, animated: true)
+        router.push(view, animated: true, onNavigationBack: completionHandler)
     }
 }
 
 extension UserListCoordinator {
     func showUserDetails(usingModel models: [GitHubUser]) {
-        let userDetailsCoordinator = UserDetailsCoordinator(navigationController: navigationController, models: models)
+        let userDetailsCoordinator = UserDetailsCoordinator(router: router, models: models)
         add(coordinator: userDetailsCoordinator)
+        userDetailsCoordinator.completionHandler = { [weak self, weak userDetailsCoordinator] in
+            guard let coordinator = userDetailsCoordinator else { return }
+            self?.remove(coordinator: coordinator)
+        }
         userDetailsCoordinator.start()
     }
 }

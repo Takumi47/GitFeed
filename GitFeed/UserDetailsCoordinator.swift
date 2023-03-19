@@ -9,11 +9,11 @@ import UIKit
 
 class UserDetailsCoordinator: BaseCoordinator {
     
-    private let navigationController: UINavigationController
+    private let router: Routing
     private let models: [GitHubUser]
     
-    init(navigationController: UINavigationController, models: [GitHubUser]) {
-        self.navigationController = navigationController
+    init(router: Routing, models: [GitHubUser]) {
+        self.router = router
         self.models = models
     }
     
@@ -23,6 +23,6 @@ class UserDetailsCoordinator: BaseCoordinator {
             UserDetailsViewModel(input: $0, dependencies: (models, ()))
         }
         
-        navigationController.pushViewController(view, animated: true)
+        router.push(view, animated: true, onNavigationBack: completionHandler)
     }
 }

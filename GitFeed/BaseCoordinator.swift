@@ -25,6 +25,7 @@ extension Coordinator {
 class BaseCoordinator: Coordinator {
     
     var childCoordinators: [Coordinator] = []
+    var completionHandler: (() -> Void)?
     
     func start() {
         fatalError("start() has not been implemented")

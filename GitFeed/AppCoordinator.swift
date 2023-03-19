@@ -27,8 +27,13 @@ class AppCoordinator: BaseCoordinator {
     // MARK: - Override
     
     override func start() {
-        let userListCoordinator = UserListCoordinator(navigationController: navigationController)
+        let router = Router(navigationController: navigationController)
+        let userListCoordinator = UserListCoordinator(router: router)
         add(coordinator: userListCoordinator)
+        userListCoordinator.completionHandler = { [weak self, weak userListCoordinator] in
+            guard let coordiantor = userListCoordinator else { return }
+            self?.remove(coordinator: coordiantor)
+        }
         userListCoordinator.start()
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
