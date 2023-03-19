@@ -10,7 +10,7 @@ GitFeed is a project that list GitHub users in the order they signed up on GitHu
 
 # Demo
 
-![demo](https://imgur.com/a/iXR89dN)
+![Demo](./Demo/demo.gif)
 
 # Features
 
@@ -18,8 +18,8 @@ The project will feature two different information via GitHub API.
 
 - The main page is about reaching out to GitHub’s JSON API, receiving the JSON response, and ultimately converting it into a collection of objects. List fetching information as below:
 
-![page1.png](https://imgur.com/a/h3YuTRK)
+![page1](./Demo/page1.png)
 
 - The second page uses the endpoint that comes from the username (login) retrieved from the main page.
 
-![page2.png](https://imgur.com/n0uAcGW)
+![page2](./Demo/page2.png)
